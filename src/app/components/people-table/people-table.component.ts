@@ -11,6 +11,8 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 import { Person } from 'src/app/models';
 import { People } from 'src/app/data';
+import { DataSharingState, GentlemanStateManager } from 'src/app/app.module';
+import { SourceOfTruthKeys, UserStateProperties } from 'src/app/state-management/store/store';
 
 @Component({
   selector: 'app-people-table',
@@ -41,6 +43,7 @@ export class PeopleTableComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor() {
+    GentlemanStateManager.getEntity(SourceOfTruthKeys.USER).setObservableValue(20, UserStateProperties.AGE);
     this.dataSource = new MatTableDataSource(People);
   }
 
